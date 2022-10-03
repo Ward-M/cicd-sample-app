@@ -1,9 +1,42 @@
 #!/bin/bash
 set -euo pipefail
 
-mkdir tempdir
-mkdir tempdir/templates
-mkdir tempdir/static
+if [[ ! -d "tempdir" ]]
+then
+    if [ -L tempdir]
+then
+    echo "Folder doesn't exist. Creating now"
+    mkdir tempdir
+    echo "tempdir created"
+    else
+        echo "tempdir exists"
+    fi
+fi
+
+if [[ ! -d "tempdir/templates" ]]
+then
+    if [ -L tempdir/templates]
+then
+    echo "Folder doesn't exist. Creating now"
+    mkdir tempdir/templates
+    echo "tempdir/templates created"
+    else
+        echo "tempdir/templates exists"
+    fi
+fi
+
+if [[ ! -d "tempdir/static" ]]
+then
+    if [ -L tempdir/static]
+then
+    echo "Folder doesn't exist. Creating now"
+    mkdir tempdir/static
+    echo "tempdir/static created"
+    else
+        echo "tempdir/static exists"
+    fi
+fi
+
 
 cp sample_app.py tempdir/.
 cp -r templates/* tempdir/templates/.
